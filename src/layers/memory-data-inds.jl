@@ -15,9 +15,10 @@ type MemoryDataLayerIndsState <: LayerState
   blobs :: Vector{Blob}
   epoch :: Int
   trans :: Vector{Vector{DataTransformerState}}
+  curr_idx :: Int
+
   inds :: Array{Int64,1}
 
-  curr_idx :: Int
 
   MemoryDataLayerIndsState(backend::Backend, layer::MemoryDataLayerInds) = begin
     blobs = Array(Blob, length(layer.tops))
