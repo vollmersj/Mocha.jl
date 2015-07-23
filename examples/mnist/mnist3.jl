@@ -59,7 +59,9 @@ solver_state.momentum = get_momentum(solver.params.mom_policy, solver_state)
 init(net)
 # Initial forward iteration
 solver_state.obj_val = forward(net, solver.params.regu_coef)
+println("achieved forward")
 backward(net, solver.params.regu_coef)
+println("achieved backward")
 net.states[4].parameters[1].gradient.data
 
 @debug("Initializing coffee breaks")

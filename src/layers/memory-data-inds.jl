@@ -57,7 +57,7 @@ function forward(backend::Backend, state::MemoryDataLayerIndsState, inputs::Vect
     for i = 1:length(state.blobs)
       dset = state.layer.data[i]
       idx = map(x -> 1:x, size(state.blobs[i])[1:end-1])
-      the_data = dset[idx..., ind[j]]
+      the_data = dset[idx..., inds[j]]
       set_blob_data(the_data, state.blobs[i],j)
     end
   end
