@@ -184,6 +184,7 @@ end
 #############################################################
 include("layers/hdf5-data.jl")
 include("layers/memory-data.jl")
+include("layers/memory-data-inds.jl")
 include("layers/async-hdf5-data.jl")
 
 #############################################################
