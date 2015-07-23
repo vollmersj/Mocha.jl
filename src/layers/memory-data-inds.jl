@@ -31,7 +31,7 @@ type MemoryDataLayerIndsState <: LayerState
       trans[i] = [setup(backend, convert(DataTransformerType, t), blobs[i])
           for (k,t) in filter(kt -> kt[1] == layer.tops[i], transformers)]
     end
-    inds=[1:layer.batch_size];
+    inds=[1,2,3,4];
     new(layer, blobs, 0, trans, 1)
   end
 end
