@@ -1,6 +1,6 @@
 export LayerState
 
-export HDF5DataLayer, MemoryDataLayer, AsyncHDF5DataLayer
+export HDF5DataLayer, MemoryDataLayer, AsyncHDF5DataLayer, MemoryDataLayerInds
 export InnerProductLayer, ConvolutionLayer, PoolingLayer, SoftmaxLayer
 export PowerLayer, SplitLayer, ElementWiseLayer, ChannelPoolingLayer
 export LRNLayer, DropoutLayer, ReshapeLayer, ArgmaxLayer, HDF5OutputLayer
