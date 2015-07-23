@@ -85,7 +85,7 @@ add_coffee_break(solver, TrainingSummary(), every_n_iter=5)
 add_coffee_break(solver, Snapshot(exp_dir), every_n_iter=5000)
 
 # show performance on test data every 1000 iterations
-data_layer_test = HDF5DataLayer(name="test-data", source="data/test.txt", batch_size=100)
+data_layer_test = HDF5DataLayer(name="test-data", source="data/restricttest.txt", batch_size=100)
 acc_layer = AccuracyLayer(name="test-accuracy", bottoms=[:ip2, :label])
 test_net = Net("MNIST-test", backend, [data_layer_test, common_layers..., acc_layer])
 add_coffee_break(solver, ValidationPerformance(test_net), every_n_iter=1000)
