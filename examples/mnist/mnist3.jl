@@ -35,7 +35,7 @@ backend = use_gpu ? GPUBackend() : CPUBackend()
 init(backend)
 
 common_layers = [conv_layer, pool_layer, conv2_layer, pool2_layer, fc1_layer, fc2_layer]
-net = Net("MNIST-train", backend, [data_layer2, common_layers..., loss_layer])
+net = Net("MNIST-train", backend, [data_layer, common_layers..., loss_layer])
 1
 net.states[1].blobs
 
@@ -74,7 +74,7 @@ i_state = setup(solver, net, solver_state)
 # param_states  = map(i -> net.states[i],filter(i -> has_param(net.layers[i]) && !is_frozen(net.states[i]), 1:length(net.layers)))
 
 
-setup_coffee_lounge(solver, save_into="$exp_dir/statistics.jld", every_n_iter=1000)
+setup_coffee_lounge(solver, save_into="$exp_dir/statistics.jld", every_n_iter=1000,max_iter=50)
 
 # report training progress every 100 iterations
 add_coffee_break(solver, TrainingSummary(), every_n_iter=5)
@@ -83,7 +83,7 @@ add_coffee_break(solver, TrainingSummary(), every_n_iter=5)
 add_coffee_break(solver, Snapshot(exp_dir), every_n_iter=5000)
 
 # show performance on test data every 1000 iterations
-data_layer_test = HDF5DataLayer(name="test-data", source="data/restricttest.txt", batch_size=100)
+data_layer_test = HDF5DataLayer(name="test-data", source="data/restricttest.txt", batch_size=5)
 acc_layer = AccuracyLayer(name="test-accuracy", bottoms=[:ip2, :label])
 test_net = Net("MNIST-test", backend, [data_layer_test, common_layers..., acc_layer])
 add_coffee_break(solver, ValidationPerformance(test_net), every_n_iter=1000)
