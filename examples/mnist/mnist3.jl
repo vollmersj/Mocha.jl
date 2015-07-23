@@ -58,8 +58,9 @@ solver_state.momentum = get_momentum(solver.params.mom_policy, solver_state)
   # initializers will be automatically set to NullInitializer
 init(net)
 # Initial forward iteration
-solver_state.obj_val = forward(net, solver.params.regu_coef)
-println("achieved forward")
+@show solver_state.obj_val = forward(net, solver.params.regu_coef)
+@show solver_state.obj_val = forward(net, solver.params.regu_coef)
+@show solver_state.obj_val = forward(net, solver.params.regu_coef)
 backward(net, solver.params.regu_coef)
 println("achieved backward")
 net.states[4].parameters[1].gradient.data
