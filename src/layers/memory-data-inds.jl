@@ -1,3 +1,4 @@
+println("MemoryDataLayerInds Layer")
 @defstruct MemoryDataLayerInds Layer (
   name :: String = "memory-data",
   (tops :: Vector{Symbol} = Symbol[:data,:label], length(tops) > 0),
