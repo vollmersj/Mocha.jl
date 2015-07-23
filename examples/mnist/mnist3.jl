@@ -1,18 +1,4 @@
-cd("/Users/sjv/git/MochaFork/src")
-
-use_gpu = false
-if use_gpu
-  ENV["MOCHA_USE_CUDA"] = "true"
-else
-  ENV["MOCHA_USE_NATIVE_EXT"] = "true"
-  ENV["OMP_NUM_THREADS"] = 1
-  blas_set_num_threads(1)
-end
-
-using Mocha
-
 srand(12345678)
-cd("/Users/sjv/git/Mocha/examples/mnist")
 h5_file = h5open("data/restricttrain.hdf5", "r")
 images=h5_file["data"][:,:,:,:]
 dlabel=h5_file["label"][:,:]
