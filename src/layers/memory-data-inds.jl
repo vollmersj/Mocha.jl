@@ -15,7 +15,7 @@ type MemoryDataLayerIndsState <: LayerState
   blobs :: Vector{Blob}
   epoch :: Int
   trans :: Vector{Vector{DataTransformerState}}
-  inds :: Array{Int64}
+  inds :: Array{Int64,1}
 
   curr_idx :: Int
 
@@ -32,7 +32,7 @@ type MemoryDataLayerIndsState <: LayerState
           for (k,t) in filter(kt -> kt[1] == layer.tops[i], transformers)]
     end
     inds=[1,2,3,4];
-    new(layer, blobs, 0, trans, 1)
+    new(layer, blobs, 0, trans, 1,inds)
   end
 end
 
