@@ -1,4 +1,4 @@
-cd("/Users/sjv/git/Mocha/examples/mnist")
+#cd("/Users/sjv/git/Mocha/examples/mnist")
 use_gpu = false
 
 if use_gpu

@@ -17,7 +17,7 @@ images=h5_file["data"][:,:,:,:]
 dlabel=h5_file["label"][:,:]
 #Simpler model
 #data_layer  = AsyncHDF5DataLayer(name="train-data", source="data/train.txt", batch_size=64, shuffle=true)
-data_layer=MemoryDataLayer(name="train-data", data=Array[images,dlabel],batch_size=64)
+data_layer=MemoryDataLayerInds(name="train-data", data=Array[images,dlabel],batch_size=64)
 fc1_layer   = InnerProductLayer(name="ip1", output_dim=100, neuron=Neurons.ReLU(), bottoms=[:data], tops=[:ip1])
 fc2_layer   = InnerProductLayer(name="ip2", output_dim=10, bottoms=[:ip1], tops=[:ip2])
 loss_layer  = SoftmaxLossLayer(name="loss", bottoms=[:ip2,:label])
@@ -35,11 +35,6 @@ params = SolverParameters(max_iter=10000, regu_coef=0.0005,
     lr_policy=LRPolicy.Inv(0.01, 0.0001, 0.75))
 solver = SGD(params)
 
-solver_state = SolverState()
-solver_state = load_snapshot(net, solver.params.load_from, solver_state)
-solver_state.learning_rate = get_learning_rate(solver.params.lr_policy, solver_state)
-
-solver_state.momentum = get_momentum(solver.params.mom_policy, solver_state)
 
   # we init network AFTER loading. If the parameters are loaded from file, the
   # initializers will be automatically set to NullInitializer
@@ -52,7 +47,6 @@ backward(net, solver.params.regu_coef)
 println("achieved backward")
 net.states[4].parameters[1].gradient.data
 exit()
-
 
 setup_coffee_lounge(solver, save_into="$exp_dir/statistics.jld", every_n_iter=1000)
 
