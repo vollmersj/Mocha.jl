@@ -1,3 +1,14 @@
+use_gpu = false
+
+if use_gpu
+  ENV["MOCHA_USE_CUDA"] = "true"
+else
+  ENV["MOCHA_USE_NATIVE_EXT"] = "true"
+  ENV["OMP_NUM_THREADS"] = 1
+  blas_set_num_threads(1)
+end
+using Mocha
+using HDF5
 using Mocha
 using HDF5
 cd("../examples/mnist")
