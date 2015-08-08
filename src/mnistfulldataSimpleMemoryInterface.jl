@@ -40,12 +40,12 @@ solver = SGD(params)
   # initializers will be automatically set to NullInitializer
 init(net)
 # Initial forward iteration
-@show solver_state.obj_val = forward(net, solver.params.regu_coef)
-@show solver_state.obj_val = forward(net, solver.params.regu_coef)
-@show solver_state.obj_val = forward(net, solver.params.regu_coef)
+@show  forward(net, solver.params.regu_coef)
+@show  forward(net, solver.params.regu_coef)
+@show  forward(net, solver.params.regu_coef)
 backward(net, solver.params.regu_coef)
 println("achieved backward")
-net.states[4].parameters[1].gradient.data
+net.states[2].parameters[1].gradient.data
 exit()
 
 setup_coffee_lounge(solver, save_into="$exp_dir/statistics.jld", every_n_iter=1000)

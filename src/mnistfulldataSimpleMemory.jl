@@ -50,7 +50,6 @@ init(net)
 @show solver_state.obj_val = forward(net, solver.params.regu_coef)
 backward(net, solver.params.regu_coef)
 println("achieved backward")
-net.states[4].parameters[1].gradient.data
 exit()
 
 
