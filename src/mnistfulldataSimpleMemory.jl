@@ -12,7 +12,7 @@ end
 using Mocha
 using HDF5
 srand(12345678)
-h5_file = h5open("../exmaples/mnist/data/train.hdf5", "r")
+h5_file = h5open("../examples/mnist/data/train.hdf5", "r")
 images=h5_file["data"][:,:,:,:]
 dlabel=h5_file["label"][:,:]
 #Simpler model

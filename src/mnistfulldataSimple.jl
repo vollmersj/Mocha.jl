@@ -12,7 +12,7 @@ end
 using Mocha
 srand(12345678)
 #Simpler model
-data_layer  = AsyncHDF5DataLayer(name="train-data", source="data/train.txt", batch_size=64, shuffle=true)
+data_layer  = AsyncHDF5DataLayer(name="train-data", source="../examples/mnist/data/train.txt", batch_size=64, shuffle=true)
 fc1_layer   = InnerProductLayer(name="ip1", output_dim=100, neuron=Neurons.ReLU(), bottoms=[:data], tops=[:ip1])
 fc2_layer   = InnerProductLayer(name="ip2", output_dim=10, bottoms=[:ip1], tops=[:ip2])
 loss_layer  = SoftmaxLossLayer(name="loss", bottoms=[:ip2,:label])
