@@ -1,3 +1,5 @@
+#Works from include but not from console
+#
 #cd("/Users/sjv/git/Mocha/examples/mnist")
 use_gpu = false
 
@@ -46,30 +48,30 @@ init(net)
 backward(net, solver.params.regu_coef)
 println("achieved backward")
 net.states[2].parameters[1].gradient.data
-exit()
+# exit()
 
-setup_coffee_lounge(solver, save_into="$exp_dir/statistics.jld", every_n_iter=1000)
+# setup_coffee_lounge(solver, save_into="$exp_dir/statistics.jld", every_n_iter=1000)
 
-# report training progress every 100 iterations
-add_coffee_break(solver, TrainingSummary(), every_n_iter=100)
+# # report training progress every 100 iterations
+# add_coffee_break(solver, TrainingSummary(), every_n_iter=100)
 
-# save snapshots every 5000 iterations
-add_coffee_break(solver, Snapshot(exp_dir), every_n_iter=5000)
+# # save snapshots every 5000 iterations
+# add_coffee_break(solver, Snapshot(exp_dir), every_n_iter=5000)
 
-# show performance on test data every 1000 iterations
-data_layer_test = HDF5DataLayer(name="test-data", source="data/test.txt", batch_size=100)
-acc_layer = AccuracyLayer(name="test-accuracy", bottoms=[:ip2, :label])
-test_net = Net("MNIST-test", backend, [data_layer_test, common_layers..., acc_layer])
-add_coffee_break(solver, ValidationPerformance(test_net), every_n_iter=1000)
+# # show performance on test data every 1000 iterations
+# data_layer_test = HDF5DataLayer(name="test-data", source="data/test.txt", batch_size=100)
+# acc_layer = AccuracyLayer(name="test-accuracy", bottoms=[:ip2, :label])
+# test_net = Net("MNIST-test", backend, [data_layer_test, common_layers..., acc_layer])
+# add_coffee_break(solver, ValidationPerformance(test_net), every_n_iter=1000)
 
-solve(solver, net)
+# solve(solver, net)
 
-#Profile.init(int(1e8), 0.001)
-#@profile solve(solver, net)
-#open("profile.txt", "w") do out
-#  Profile.print(out)
-#end
+# #Profile.init(int(1e8), 0.001)
+# #@profile solve(solver, net)
+# #open("profile.txt", "w") do out
+# #  Profile.print(out)
+# #end
 
-destroy(net)
-destroy(test_net)
-shutdown(backend)
+# destroy(net)
+# destroy(test_net)
+# shutdown(backend)
